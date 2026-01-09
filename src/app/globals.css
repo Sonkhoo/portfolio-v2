@@ -4,11 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(22.324% 0.00154 16.369);
   --secondary: oklch(0.97 0 0);
   --accent: oklch(0.97 0 0);
   --muted: oklch(0.97 0 0);
-  --card: oklch(1 0 0);
+  --card: #eaebe6;
   --border: oklch(0.922 0 0);
   --radius: 0.625rem;
   --background: #eaebe6;
@@ -144,4 +144,8 @@ body {
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+html {
+  scroll-behavior: smooth;
 }
