@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
+import { Code, Briefcase, Handshake, Mail, User } from "lucide-react"
 
 const navItems = [
-    { name: "Projects", href: "#projects" },
-    { name: "Works", href: "#works" },
-    { name: "Involvements", href: "#involvements" },
-    { name: "Contact Me", href: "#contact" },
-    { name: "About Me", href: "#about" },
+    { name: "Projects", href: "#projects", icon: Code },
+    { name: "Works", href: "#works", icon: Briefcase },
+    { name: "Involvements", href: "#involvements", icon: Handshake },
+    { name: "Contact Me", href: "#contact", icon: Mail },
+    { name: "About Me", href: "#about", icon: User },
 ]
 
 export function Navbar() {
@@ -46,12 +47,13 @@ export function Navbar() {
                                 });
                             }}
                             className={cn(
-                                "relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+                                "relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors flex items-center justify-center",
                                 "text-muted-foreground hover:text-foreground",
                                 "hover:bg-muted/50"
                             )}
                         >
-                            {item.name}
+                            <span className="hidden md:block">{item.name}</span>
+                            <item.icon className="h-4 w-4 md:hidden" />
                         </Link>
                     ))}
                 </div>
