@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif, Nanum_Pen_Script } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Instrument_Sans, Nanum_Pen_Script, Inconsolata } from "next/font/google";
 import "./globals.css";
 import { DotPattern } from "@/components/ui/dot-pattern";
-import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -13,8 +12,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const nanumPenScript = Nanum_Pen_Script({
-  variable: "--font-nanum-pen-script",
+const inconsolata = Inconsolata({
+  variable: "--font-inconsolata",
   subsets: ["latin"],
   weight: "400",
 });
@@ -23,6 +22,11 @@ const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
   subsets: ["latin"],
   weight: "400",
+});
+
+const instrumentSans = Instrument_Sans({
+  variable: "--font-instrument-sans",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -41,12 +45,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${nanumPenScript.variable} ${instrumentSerif.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inconsolata.variable} ${instrumentSerif.variable} ${instrumentSans.variable} antialiased`}
       >
         <Navbar />
         <Oneko />
-        <AnimatedThemeToggler className="absolute top-4 right-4 z-[60]" />
-        <DotPattern className="opacity-30 -z-10" />
         {children}
       </body>
     </html>

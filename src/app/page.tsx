@@ -1,69 +1,111 @@
 import Image from "next/image";
-import { Highlighter } from "@/components/ui/highlighter"
-import { StickyNoteBadge } from "@/components/ui/sticky-note-badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Highlighter } from "@/components/ui/highlighter";
+import { StickyNoteBadge } from "@/components/ui/sticky-note-badge";
+import { HeroAnnotation } from "@/components/ui/hero-annotation";
+import { DotPattern } from "@/components/ui/dot-pattern";
 export default function Page() {
   return (
-    <main className="relative w-full max-w-3xl mx-auto px-6 md:px-8 pb-24">
+    <main className="relative w-full max-w-5xl mx-auto px-6 md:px-8 pb-24 border-1 border-foreground">
       {/* About / Hero Section */}
-      <section
-        id="about"
-        className="min-h-screen flex items-center justify-center py-20"
-      >
-        <div className="mx-auto max-w-4xl w-full">
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-10">
+      <section id="about" className="pt-20 pb-20">
+        {/* Dark border frame */}
+        {/* Dark border frame */}
+        <div className="relative bg-background border-[6px] border-foreground flex flex-col">
+          {/* Dotted Pattern Background - contained */}
+          <div className="absolute inset-0 overflow-hidden">
+            <DotPattern className="opacity-40 absolute inset-0 -z-0" />
+          </div>
 
-            {/* Left: Image */}
-            <div className="flex-shrink-0">
-              <Image
-                src="/image/hero.png"
-                alt="Hero"
-                width={300}
-                height={300}
-                priority
-                className="
-            rounded-3xl
-            rotate-[-3deg]
-            hover:rotate-0
-            hover:scale-[1.02]
-            transition-transform duration-500
-            object-cover
-          "
-              />
-            </div>
+          {/* User Profile Header Strip */}
+          <div className="flex items-center justify-between p-4 border-b-3 border-foreground bg-background relative z-10">
+            <span className="font-[family-name:var(--font-inconsolata)] text-xl">User Profile</span>
+            <Image
+              src="/svg/up-right.svg"
+              alt="Up Right"
+              width={24}
+              height={24}
+              className="dark:invert"
+            />
+          </div>
 
-            {/* Right: Text */}
-            <div className="relative flex flex-col items-start space-y-6 max-w-xl">
-              <div className="relative">
-                <h1 className="font-nanum text-4xl md:text-7xl text-primary relative z-10">
-                  <Highlighter action="underline" color="#ffc400">
-                    <span className="inline-block -rotate-1">
-                      Sonkhoo
-                    </span>
-                  </Highlighter>
-                </h1>
+          {/* Main Hero Content - Inner Container with Padding */}
+          <div className="p-8 md:p-12 relative z-10">
 
-                {/* Arrow */}
-                <div className="hidden md:block absolute -left-24 top-2 rotate-[12deg] opacity-80 hover:rotate-0 transition">
+            <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] gap-8 md:gap-4 items-start relative">
+              {/* Left side: Images */}
+              <div className="flex flex-col items-center md:items-start relative w-full mx-auto md:mx-0 overflow-visible">
+                {/* Backend Engineer label */}
+                <div className="md:absolute md:-top-8 md:left-0 z-20 mb-4 md:mb-0">
+                  <span className="font-[family-name:var(--font-inconsolata)] text-base">Backend Engineer</span>
+                </div>
+
+                {/* Arrow SVG - Hidden on mobile */}
+                <div className="hidden md:block absolute -top-1 left-10 z-20 w-20 h-20">
                   <Image
                     src="/svg/arrow.svg"
-                    alt="arrow"
-                    width={60}
-                    height={60}
+                    alt="Arrow"
+                    width={80}
+                    height={80}
                     className="dark:invert"
                   />
                 </div>
+                {/* Hero Image */}
+                <div className="w-full md:w-72 h-[450px] md:h-[600px] flex justify-center md:items-start md:relative overflow-visible">
+                  <div className="relative md:absolute md:top-0 md:left-0 md:z-10">
+                    <Image
+                      src="/image/hero.png"
+                      alt="Hero"
+                      width={340}
+                      height={500}
+                      priority
+                      className="mx-auto md:mx-0"
+                    />
+                  </div>
+                </div>
+
               </div>
+              {/* Right side: Content box */}
+              <div className="relative min-w-0">
+                {/* Pattern in top-right corner - Hidden on mobile */}
+                <div className="hidden md:block absolute -top-8 -right-8 w-24 h-24 opacity-80">
+                  <Image
+                    src="/image/pattern.png"
+                    alt="Pattern"
+                    width={96}
+                    height={96}
+                    className="object-cover"
+                  />
+                </div>
 
-              <p className="text-muted-foreground text-lg md:text-xl leading-relaxed">
-                Full-stack web & mobile developer skilled in backend, cloud, and generative AI.
-              </p>
+                {/* Content box with border */}
+                <div className="border-2 border-foreground p-6 md:p-8 bg-background relative z-10 shadow-[8px_8px_0px_0px_rgba(0,0,0,0.1)]">
+                  {/* Name */}
+                  <h1 className="font-[family-name:var(--font-instrument-sans)] font-bold text-2xl md:text-5xl text-foreground mb-6 tracking-tight text-center md:text-left">
+                    <Highlighter action="underline" color="pink">SONKHOO</Highlighter>
+                  </h1>
 
-              <StickyNoteBadge rotate={6} color="yellow">
-                Backend Engineer
-              </StickyNoteBadge>
+                  {/* Description */}
+                  <p className="font-[family-name:var(--font-inconsolata)] text-foreground/80 text-base leading-relaxed mb-8 text-center md:text-left">
+                    Full-stack web & mobile developer<br />
+                    skilled in Backend, cloud, and<br />
+                    generative AI.
+                  </p>
+
+                  {/* View Resume Button */}
+                  <button className="mx-auto md:mx-0 block md:inline-block border-2 border-foreground bg-transparent text-foreground px-6 py-2.5 font-[family-name:var(--font-inconsolata)] text-sm hover:bg-foreground hover:text-background transition-colors duration-200">
+                    View Resume
+                  </button>
+                </div>
+                {/* Last Commit below the card */}
+                <div className="mt-4 text-center md:text-right">
+                  <span className="font-[family-name:var(--font-inconsolata)] text-xs md:text-lg text-foreground/60">
+                    Last Commit : 2025-1-5 9:30 UTC
+                  </span>
+
+                </div>
+              </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -111,6 +153,6 @@ export default function Page() {
           </button>
         </div>
       </section>
-    </main>
+    </main >
   );
 }

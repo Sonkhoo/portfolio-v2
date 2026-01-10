@@ -10,11 +10,11 @@ interface StickyNoteBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const colorStyles: Record<StickyNoteColor, string> = {
-    yellow: "bg-[#fff9c4] text-yellow-900 border-yellow-200",
-    pink: "bg-[#ffe4e1] text-pink-900 border-pink-200",
-    blue: "bg-[#e0f7fa] text-blue-900 border-blue-200",
-    green: "bg-[#e8f5e9] text-green-900 border-green-200",
-    purple: "bg-[#f3e5f5] text-purple-900 border-purple-200",
+    yellow: "bg-[#ffeb3b] text-black",
+    pink: "bg-[#ffd1dc] text-black",
+    blue: "bg-[#00b0ff] text-black",
+    green: "bg-[#00e676] text-black",
+    purple: "bg-[#aa00ff] text-white",
 };
 
 export function StickyNoteBadge({
@@ -28,9 +28,9 @@ export function StickyNoteBadge({
     return (
         <div
             className={cn(
-                "inline-flex items-center justify-center px-4 py-1.5",
-                "font-nanum text-xl tracking-wide leading-none",
-                "border rounded-sm shadow-sm",
+                "inline-flex items-center justify-center px-4 py-2",
+                "font-bold uppercase text-sm tracking-widest leading-none",
+                "shadow-[4px_4px_0_rgba(0,0,0,1)]",
                 "transition-all duration-300 ease-in-out",
                 "cursor-default select-none",
                 colorStyles[color],

@@ -1,63 +1,49 @@
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Code, Briefcase, Handshake, Mail, User } from "lucide-react"
+import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler"
 
 const navItems = [
+    { name: "About", href: "#about", icon: User },
     { name: "Projects", href: "#projects", icon: Code },
     { name: "Works", href: "#works", icon: Briefcase },
     { name: "Involvements", href: "#involvements", icon: Handshake },
-    { name: "Contact Me", href: "#contact", icon: Mail },
-    { name: "About Me", href: "#about", icon: User },
+    { name: "Contact", href: "#contact", icon: Mail },
 ]
 
 export function Navbar() {
-    const [isScrolled, setIsScrolled] = useState(false)
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20)
-        }
-
-        window.addEventListener("scroll", handleScroll)
-        return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
-
     return (
-        <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 pointer-events-none">
-            <nav
-                className={cn(
-                    "flex items-center gap-1 rounded-full px-4 py-2 transition-all duration-300 ease-in-out border pointer-events-auto",
-                    isScrolled
-                        ? "bg-background/80 border-border/40 shadow-sm backdrop-blur-md"
-                        : "bg-transparent border-transparent shadow-none"
-                )}
-            >
-                <div className="flex items-center gap-1">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.name}
-                            href={item.href}
-                            onClick={(e) => {
-                                e.preventDefault();
-                                document.querySelector(item.href)?.scrollIntoView({
-                                    behavior: "smooth",
-                                });
-                            }}
-                            className={cn(
-                                "relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors flex items-center justify-center",
-                                "text-muted-foreground hover:text-foreground",
-                                "hover:bg-muted/50"
-                            )}
-                        >
-                            <span className="hidden md:block">{item.name}</span>
-                            <item.icon className="h-4 w-4 md:hidden" />
-                        </Link>
-                    ))}
-                </div>
+        <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 pb-4 bg-background border-b-[1px] border-foreground">
+            <nav className="flex items-center gap-2 whitespace-nowrap">
+                {navItems.map((item) => (
+                    <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            document.querySelector(item.href)?.scrollIntoView({
+                                behavior: "smooth",
+                            });
+                        }}
+                        className={cn(
+                            "flex items-center justify-center transition-colors",
+                            "px-3 py-3 md:px-2 md:py-2",
+                            "text-foreground hover:underline decoration-2 underline-offset-4"
+                        )}
+                    >
+                        <span className="hidden md:block text-xs font-bold uppercase tracking-wide">
+                            {item.name}
+                        </span>
+                        <item.icon className="h-5 w-5 md:hidden" />
+
+                    </Link>
+                ))}
+                <div className="h-6 w-[1px] bg-foreground/20 mx-2 hidden md:block" />
+                <AnimatedThemeToggler className="flex items-center justify-center px-3 py-3 md:px-2 md:py-2 text-foreground hover:underline decoration-2 underline-offset-4" />
             </nav>
-        </div>
+        </div >
     )
 }
