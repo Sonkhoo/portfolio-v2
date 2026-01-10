@@ -56,8 +56,8 @@ export default function Page() {
                     <Image
                       src="/image/hero.png"
                       alt="Hero"
-                      width={340}
-                      height={500}
+                      width={320}
+                      height={450}
                       priority
                       className="mx-auto md:mx-0"
                     />
